@@ -1,10 +1,32 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 
-def index(request):  # HttpRequest
-    return HttpResponse("Страница приложения women")
+menu = ["О сайте", "Добавить статью", "Обратная связь", "Войти"]
+
+data_db = [
+    {'id': 1, 'title': 'Анжелина', 'content': 'Биография Анжелины', 'is_published': True},
+    {'id': 1, 'title': 'Hopper', 'content': 'Биография Hopper', 'is_published': False},
+    {'id': 1, 'title': 'Truman', 'content': 'Биография Truman', 'is_published': True},
+]
+
+
+def index(request):
+    data = {
+        'title': 'Главная страница',
+        'menu': menu,
+        'posts': data_db,
+    }
+    return render(request, 'women/index.html', context=data)
+    # t = render_to_string('women/index.html')
+    # return HttpResponse(t)
+    # return HttpResponse("Страница приложения women")
+
+
+def about(request):
+    return render(request, 'women/about.html', {'title': 'О сайте'})
 
 
 def categories(request, cat_id):  # HttpRequest

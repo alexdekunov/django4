@@ -1,5 +1,6 @@
-from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 
 def index(request):  # HttpRequest
@@ -18,7 +19,14 @@ def categories_by_slug(request, cat_slug):
 
 def archive(request, year):
     if year > 2023:
-        raise Http404()
+        # uri = reverse('cats', args=('sport', ))
+        # return HttpResponsePermanentRedirect(uri)
+        # return redirect('cats', 'music')
+        return redirect('home')
+        # return redirect(index)
+        # return redirect('/', permanent=True)  # 301
+        # return redirect('/')  # 302
+        # raise Http404()
 
     return HttpResponse(f"Архив по годам<p>{year}</p>")
 

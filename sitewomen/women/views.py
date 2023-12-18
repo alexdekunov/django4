@@ -12,7 +12,8 @@ menu = [{'title': "О сайте", 'url_name': "about"},
 ]
 
 data_db = [
-    {'id': 1, 'title': 'Анжелина', 'content': 'Биография Анжелины', 'is_published': True},
+    {'id': 1, 'title': 'Анжелина', 'content': '''Биография Анжелины биография биография биография биография биография
+    биография биография биография биография биография биография биография ''', 'is_published': True},
     {'id': 1, 'title': 'Hopper', 'content': 'Биография Hopper', 'is_published': False},
     {'id': 1, 'title': 'Truman', 'content': 'Биография Truman', 'is_published': True},
 ]

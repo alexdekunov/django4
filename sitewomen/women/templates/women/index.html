@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<ul>
-    <li><a href="{% url 'home' %}">Главная страница</a></li>
-    {% for m in menu %}
-    {% if not forloop.last %}<li>{% else %}<li class="last">{% endif %}
-        <a href="{% url m.url_name %}">{{ m.title }}</a>
-    </li>
-    {% endfor%}
-</ul>
+{% block content %}
+<h1>{{ title }}</h1>
 
-<!--<p>{{ menu|join:" | "}}</p>-->
-<h1>{{ title|capfirst }}</h1>
+{% include 'women/includes/nav.html' %}
 
 <ul>
     {% for p in posts %}
@@ -33,5 +20,6 @@
     {% endfor %}
 </ul>
 
-</body>
-</html>
+{% include 'women/includes/nav.html' %}
+
+{% endblock %}

@@ -4,7 +4,12 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 
 
-menu = ["О сайте", "Добавить статью", "Обратная связь", "Войти"]
+# menu = ["О сайте", "Добавить статью", "Обратная связь", "Войти"]
+menu = [{'title': "О сайте", 'url_name': "about"},
+        {'title': "Добавить статью", 'url_name': "add_page"},
+        {'title': "Обратная связь", 'url_name': "contact"},
+        {'title': "Авторизация", 'url_name': "login"},
+]
 
 data_db = [
     {'id': 1, 'title': 'Анжелина', 'content': 'Биография Анжелины', 'is_published': True},
@@ -29,28 +34,43 @@ def about(request):
     return render(request, 'women/about.html', {'title': 'О сайте'})
 
 
-def categories(request, cat_id):  # HttpRequest
-    return HttpResponse(f"<h1>Статьи по категориям</h1><p>id: {cat_id}</p>")
+def show_post(request, post_id):
+    return HttpResponse(f"Отображение статьи с id = {post_id}")
+
+# def categories(request, cat_id):  # HttpRequest
+#     return HttpResponse(f"<h1>Статьи по категориям</h1><p>id: {cat_id}</p>")
+#
+#
+# def categories_by_slug(request, cat_slug):
+#     if request.POST:
+#         print(request.POST)
+#     return HttpResponse(f"<h1>Статьи по категориям</h1><p>slug: {cat_slug}</p>")
+#
+#
+# def archive(request, year):
+#     if year > 2023:
+#         # uri = reverse('cats', args=('sport', ))
+#         # return HttpResponsePermanentRedirect(uri)
+#         # return redirect('cats', 'music')
+#         return redirect('home')
+#         # return redirect(index)
+#         # return redirect('/', permanent=True)  # 301
+#         # return redirect('/')  # 302
+#         # raise Http404()
+#
+#     return HttpResponse(f"Архив по годам<p>{year}</p>")
 
 
-def categories_by_slug(request, cat_slug):
-    if request.POST:
-        print(request.POST)
-    return HttpResponse(f"<h1>Статьи по категориям</h1><p>slug: {cat_slug}</p>")
+def addpage(request):
+    return HttpResponse(f"Добавление статьи")
 
 
-def archive(request, year):
-    if year > 2023:
-        # uri = reverse('cats', args=('sport', ))
-        # return HttpResponsePermanentRedirect(uri)
-        # return redirect('cats', 'music')
-        return redirect('home')
-        # return redirect(index)
-        # return redirect('/', permanent=True)  # 301
-        # return redirect('/')  # 302
-        # raise Http404()
+def contact(request):
+    return HttpResponse(f"Обратная связь")
 
-    return HttpResponse(f"Архив по годам<p>{year}</p>")
+
+def login(request):
+    return HttpResponse(f"Авторизация")
 
 
 def page_not_found(requests, exception):

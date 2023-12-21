@@ -18,6 +18,12 @@ data_db = [
     {'id': 1, 'title': 'Truman', 'content': 'Биография Truman', 'is_published': True},
 ]
 
+cats_db = [
+    {'id': 1, 'name': 'Актрисы'},
+    {'id': 2, 'name': 'Певицы'},
+    {'id': 3, 'name': 'Спортсменки'},
+
+]
 
 def index(request):
     data = {

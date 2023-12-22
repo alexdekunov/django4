@@ -25,11 +25,13 @@ cats_db = [
 
 ]
 
+
 def index(request):
     data = {
         'title': 'Главная страница',
         'menu': menu,
         'posts': data_db,
+        'cat_selected': 0,
     }
     return render(request, 'women/index.html', context=data)
     # t = render_to_string('women/index.html')
@@ -78,6 +80,16 @@ def contact(request):
 
 def login(request):
     return HttpResponse(f"Авторизация")
+
+
+def show_category(request, cat_id):
+    data = {
+        'title': 'Отображение по рубрикам',
+        'menu': menu,
+        'posts': data_db,
+        'cat_selected': cat_id,
+    }
+    return render(request, 'women/index.html', context=data)
 
 
 def page_not_found(requests, exception):

@@ -33,12 +33,14 @@
 <!-- Sidebar слева -->
 	<td valign="top" class="left-chapters">
 	<ul id="leftchapters">
-		{% get_categories as categories %}
+		{% if cat_selected == 0 or cat_selected is None %}
 		<li class="selected">Все категории</li>
+		{% else %}
+		<li><a href="{% url 'home' %}">Все категории</a></li>
+		{% endif %}
 
-		{% for cat in categories %}
-		<li><a href="#">{{cat.name}}</a></li>
-		{% endfor %}
+		{% show_categories cat_selected %}
+
 
 		<li class="share">
 		<p>Наш канал</p>
